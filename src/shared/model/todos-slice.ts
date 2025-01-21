@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
-import type { RootState } from '../../../app/model/store';
+import type { RootState } from '../../app/model/store';
 import type Task from '../lib/task';
 import TasksStatus from '../lib/tasks-status';
 
@@ -28,7 +28,7 @@ export const todosSlice = createSlice({
       state.tasks = state.tasks.filter((task) => !task.isCompleted);
     },
     changeTaskCompletion: (state, action: PayloadAction<Task>) => {
-      const task = state.tasks.find((task => task.id === action.payload.id));
+      const task = state.tasks.find((item) => item.id === action.payload.id);
       if (task) {
         task.isCompleted = !task.isCompleted;
       }
@@ -39,17 +39,17 @@ export const todosSlice = createSlice({
   },
 });
 
-const getActiveTasks = (state: RootState) => (
-  state.todos.tasks.filter((task) => !task.isCompleted)
-);
+const getActiveTasks = (state: RootState) =>
+  state.todos.tasks.filter((task) => !task.isCompleted);
 
-const getCompletedTasks = (state: RootState) => (
-  state.todos.tasks.filter((task) => task.isCompleted)
-);
+const getCompletedTasks = (state: RootState) =>
+  state.todos.tasks.filter((task) => task.isCompleted);
 
 export const selectTasks = (state: RootState) => state.todos.tasks;
-export const selectActiveTasksCount = (state: RootState) => getActiveTasks(state).length;
-export const selectShownTasksStatus = (state: RootState) => state.todos.shownTasksStatus;
+export const selectActiveTasksCount = (state: RootState) =>
+  getActiveTasks(state).length;
+export const selectShownTasksStatus = (state: RootState) =>
+  state.todos.shownTasksStatus;
 
 export const selectShownTasks = (state: RootState) => {
   switch (state.todos.shownTasksStatus) {
@@ -60,7 +60,9 @@ export const selectShownTasks = (state: RootState) => {
     case TasksStatus.Completed:
       return getCompletedTasks(state);
     default:
-      throw new Error('Cannot select shown tasks because of the unknown status');
+      throw new Error(
+        'Cannot select shown tasks because of the unknown status',
+      );
   }
 };
 
@@ -69,7 +71,7 @@ export const {
   addTask,
   deleteCompleted,
   changeTaskCompletion,
-  setShownTasksStatus
+  setShownTasksStatus,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

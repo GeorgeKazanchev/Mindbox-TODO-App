@@ -7,7 +7,7 @@
     "dev": "vite --port 1001",
     "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
     "build": "npm run lint && tsc -b && vite build",
-    "start": "vite preview --port 1002",
+    "start": "npm run build && vite preview --port 1002",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
   },

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import App from './ui/App';
 import tasks from '../shared/mocks/tasks';
 import { store } from './model/store';
-import { setTasks } from '../widgets/Todos';
+import { setTasks } from '../shared/model/todos-slice';
 
 import 'normalize.css';
 

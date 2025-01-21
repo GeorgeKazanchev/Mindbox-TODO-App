@@ -1,13 +1,17 @@
 import React from 'react';
-import { useAppDispatch, useAppSelector } from '../../../shared/model/redux-hooks';
+import {
+  useAppDispatch,
+  useAppSelector,
+} from '../../../shared/model/redux-hooks';
 
 import {
   deleteCompleted,
   selectActiveTasksCount,
   selectShownTasksStatus,
   setShownTasksStatus,
-  TasksStatus
-} from '../../../widgets/Todos';
+} from '../../../shared/model/todos-slice';
+
+import TasksStatus from '../../../shared/lib/tasks-status';
 
 export default function TodoControls(): React.ReactNode {
   const activeTasksCount = useAppSelector(selectActiveTasksCount);
@@ -19,17 +23,31 @@ export default function TodoControls(): React.ReactNode {
     <div>
       <span>{`${activeTasksCount} items left`}</span>
       <div>
-        <input type='radio' name='tasks-filtration' value='all'
+        <input
+          type="radio"
+          name="tasks-filtration"
+          value="all"
           checked={shownTasksStatus === TasksStatus.All}
-          onChange={() => dispatch(setShownTasksStatus(TasksStatus.All))} />
-        <input type='radio' name='tasks-filtration' value='active'
+          onChange={() => dispatch(setShownTasksStatus(TasksStatus.All))}
+        />
+        <input
+          type="radio"
+          name="tasks-filtration"
+          value="active"
           checked={shownTasksStatus === TasksStatus.Active}
-          onChange={() => dispatch(setShownTasksStatus(TasksStatus.Active))} />
-        <input type='radio' name='tasks-filtration' value='completed'
+          onChange={() => dispatch(setShownTasksStatus(TasksStatus.Active))}
+        />
+        <input
+          type="radio"
+          name="tasks-filtration"
+          value="completed"
           checked={shownTasksStatus === TasksStatus.Completed}
-          onChange={() => dispatch(setShownTasksStatus(TasksStatus.Completed))} />
+          onChange={() => dispatch(setShownTasksStatus(TasksStatus.Completed))}
+        />
       </div>
-      <button type='button' onClick={() => dispatch(deleteCompleted())}>Clear completed</button>
+      <button type="button" onClick={() => dispatch(deleteCompleted())}>
+        Clear completed
+      </button>
     </div>
   );
 }
