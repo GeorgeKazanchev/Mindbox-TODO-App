@@ -9,7 +9,7 @@ $tick-img-src: './assets/tick.svg';
   flex-direction: column;
   justify-content: center;
   overflow: hidden;
-  font: $font-paragraph-regular;
+  font: $font-paragraph;
   background-color: #fdfdfd;
   box-shadow: 0 0 1px 1px rgba($shadow-color, 0.7);
   user-select: none;
@@ -24,19 +24,29 @@ $tick-img-src: './assets/tick.svg';
   display: flex;
   align-items: center;
   padding: 20px;
-  padding-left: 3 * $checkbox-radius;
+  padding-left: 2 * $checkbox-radius;
+  padding-right: 5px;
   cursor: pointer;
+
+  @media (min-width: $tablet-min-width) {
+    padding-left: 3 * $checkbox-radius;
+    padding-right: 20px;
+  }
 }
 
 .description::before {
   content: '';
   position: absolute;
-  left: $checkbox-radius;
+  left: 0.5 * $checkbox-radius;
   width: $checkbox-radius;
   min-width: $checkbox-radius;
   aspect-ratio: 1;
   border: 1px solid #555555;
   border-radius: 50%;
+
+  @media (min-width: $tablet-min-width) {
+    left: $checkbox-radius;
+  }
 }
 
 .todo-item-completed {
@@ -50,14 +60,16 @@ $tick-img-src: './assets/tick.svg';
   }
 }
 
-.todo-item:hover {
+.todo-item:hover,
+.description:focus-visible {
   box-shadow:
     inset 2px 2px 3px rgba($shadow-color, 0.5),
     inset -2px -2px 3px rgba($shadow-color, 0.5),
     1px 1px 3px rgba(#ffffff, 1);
 }
 
-.todo-item:hover:not(.todo-item-completed) {
+.todo-item:hover:not(.todo-item-completed),
+.description:focus-visible:not(.todo-item-completed) {
   .description::before {
     background: url($tick-img-src) no-repeat center;
   }
