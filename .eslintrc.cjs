@@ -26,5 +26,9 @@ module.exports = {
         'state',
       ],
     }],
+    //  Данные правила отключаются, чтобы улучшить доступность lable-ов
+    //  и дать возможность переключаться между ними клавишей Tab
+    'jsx-a11y/no-noninteractive-element-interactions': 'off',
+    'jsx-a11y/no-noninteractive-tabindex': 'off',
   },
 };

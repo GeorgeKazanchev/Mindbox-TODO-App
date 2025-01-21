@@ -15,11 +15,22 @@ export default function TodoItem({ task }: Props): React.ReactNode {
 
   const isCompletedId = `todo-${id}-completed`;
 
+  const handleKeyDown = (evt: React.KeyboardEvent<HTMLLabelElement>) => {
+    if (evt.key === 'Enter' || evt.code === 'Space') {
+      dispatch(changeTaskCompletion(task));
+    }
+  };
+
   return (
     <li
       className={`${styles.todoItem} ${isCompleted ? styles.todoItemCompleted : ''}`}
     >
-      <label className={styles.description} htmlFor={isCompletedId}>
+      <label
+        className={styles.description}
+        htmlFor={isCompletedId}
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+      >
         {description}
       </label>
       <input
