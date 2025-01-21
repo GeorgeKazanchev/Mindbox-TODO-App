@@ -1,0 +1,64 @@
+@import '/src/shared/ui/variables.scss';
+
+$checkbox-radius: 30px;
+$shadow-color: #9a8c93;
+$tick-img-src: './assets/tick.svg';
+
+.todo-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  font: $font-paragraph-regular;
+  background-color: #fdfdfd;
+  box-shadow: 0 0 1px 1px rgba($shadow-color, 0.7);
+  user-select: none;
+}
+
+.input {
+  display: none;
+}
+
+.description {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  padding-left: 3 * $checkbox-radius;
+  cursor: pointer;
+}
+
+.description::before {
+  content: '';
+  position: absolute;
+  left: $checkbox-radius;
+  width: $checkbox-radius;
+  min-width: $checkbox-radius;
+  aspect-ratio: 1;
+  border: 1px solid #555555;
+  border-radius: 50%;
+}
+
+.todo-item-completed {
+  .description {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
+
+  .description::before {
+    background: url($tick-img-src) no-repeat center;
+  }
+}
+
+.todo-item:hover {
+  box-shadow:
+    inset 2px 2px 3px rgba($shadow-color, 0.5),
+    inset -2px -2px 3px rgba($shadow-color, 0.5),
+    1px 1px 3px rgba(#ffffff, 1);
+}
+
+.todo-item:hover:not(.todo-item-completed) {
+  .description::before {
+    background: url($tick-img-src) no-repeat center;
+  }
+}

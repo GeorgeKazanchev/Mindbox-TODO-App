@@ -1,0 +1,18 @@
+@import '/src/shared/ui/variables.scss';
+
+.list {
+  display: grid;
+  width: 90%;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+
+  @media (min-width: $tablet-min-width) {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
