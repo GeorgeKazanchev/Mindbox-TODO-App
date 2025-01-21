@@ -1,13 +1,44 @@
 import Todos from './ui/Todos';
 import todosReducer from './model/todos-slice';
+import TasksStatus from './lib/tasks-status';
 import type Task from './lib/task';
 
-import { setTasks, addTask } from './model/todos-slice';
-import { selectTasks, selectActiveTasksCount } from './model/todos-slice';
+//  Import reducers
+import {
+  setTasks,
+  addTask,
+  deleteCompleted,
+  changeTaskCompletion,
+  setShownTasksStatus
+} from './model/todos-slice';
+
+//  Import selectors
+import {
+  selectTasks,
+  selectActiveTasksCount,
+  selectShownTasksStatus,
+  selectShownTasks,
+} from './model/todos-slice';
 
 export { todosReducer };
-export { setTasks, addTask };
-export { selectTasks, selectActiveTasksCount };
 
+//  Re-export reducers
+export {
+  setTasks,
+  addTask,
+  deleteCompleted,
+  changeTaskCompletion,
+  setShownTasksStatus,
+};
+
+//  Re-export selectors
+export {
+  selectTasks,
+  selectActiveTasksCount,
+  selectShownTasksStatus,
+  selectShownTasks,
+};
+
+export { TasksStatus };
 export type { Task };
 export default Todos;

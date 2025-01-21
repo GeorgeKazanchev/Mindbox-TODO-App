@@ -11,7 +11,7 @@ import 'normalize.css';
 
 const root = document.querySelector('#root');
 if (!root) {
-  throw new Error('Root not found');  //  TODO: Add error page and render it here
+  throw new Error('Root not found'); //  TODO: Add error page and render it here
 }
 
 store.dispatch(setTasks(tasks));
@@ -22,5 +22,5 @@ appContainer.render(
     <Provider store={store}>
       <App />
     </Provider>
-  </React.StrictMode>
-)
+  </React.StrictMode>,
+);
