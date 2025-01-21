@@ -1,0 +1,42 @@
+{
+  "name": "mindbox-todo",
+  "version": "1.0.0",
+  "description": "Simple TODO app",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite --port 1001",
+    "lint": "eslint . --ext .ts,.tsx,.js,.jsx",
+    "build": "npm run lint && tsc -b && vite build",
+    "start": "vite preview --port 1002",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "2.5.0",
+    "normalize.css": "8.0.1",
+    "react": "19.0.0",
+    "react-dom": "19.0.0",
+    "react-redux": "9.2.0"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.7",
+    "@types/react-dom": "19.0.3",
+    "@typescript-eslint/eslint-plugin": "7.18.0",
+    "@typescript-eslint/parser": "7.18.0",
+    "@vitejs/plugin-react": "4.3.4",
+    "eslint": "8.57.1",
+    "eslint-config-airbnb": "19.0.4",
+    "eslint-config-airbnb-typescript": "18.0.0",
+    "eslint-config-prettier": "9.1.0",
+    "eslint-plugin-import": "2.31.0",
+    "eslint-plugin-prettier": "5.2.1",
+    "gh-pages": "6.3.0",
+    "prettier": "3.4.2",
+    "prettier-eslint": "16.3.0",
+    "sass": "1.83.4",
+    "typescript": "5.7.3",
+    "vite": "6.0.10"
+  },
+  "author": "George Kazanchev",
+  "license": "ISC"
+}
