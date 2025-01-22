@@ -1,6 +1,19 @@
 @import '/src/shared/ui/variables.scss';
 
+html,
 body {
+  height: 100%;
+}
+
+body {
+  padding: 0 5%;
   color: $primary-white;
   background-color: $primary-gray;
+}
+
+/* Устранение выпадения верхнего отступа */
+body::before {
+  content: '';
+  display: block;
+  overflow: hidden;
 }

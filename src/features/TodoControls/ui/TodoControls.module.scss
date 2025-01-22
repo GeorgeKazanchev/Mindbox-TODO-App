@@ -1,0 +1,87 @@
+@import '/src/shared/ui/mixins.scss';
+@import '/src/shared/ui/variables.scss';
+
+.container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px 0;
+
+  @media (min-width: $tablet-min-width) {
+    position: fixed;
+    bottom: 40px;
+    left: 5%;
+    right: 5%;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0;
+  }
+}
+
+.tasks-left {
+  width: 150px;
+  overflow: hidden;
+  font: $font-paragraph;
+  text-transform: uppercase;
+  user-select: none;
+
+  @media (min-width: $tablet-min-width) {
+    font-size: 20px;
+  }
+}
+
+.tasks-left-count {
+  margin-left: 10px;
+  font-size: 24px;
+  color: $accent-color;
+  user-select: auto;
+
+  @media (min-width: $tablet-min-width) {
+    margin-left: 20px;
+    font-size: 28px;
+  }
+}
+
+.filters {
+  display: flex;
+  flex-direction: column;
+  row-gap: 5px;
+  margin: 20px 0;
+
+  @media (min-width: $tablet-min-width) {
+    flex-direction: row;
+    column-gap: 20px;
+  }
+}
+
+.input {
+  display: none;
+}
+
+.filter,
+.clear-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+
+  @include button;
+
+  @media (min-width: $tablet-min-width) {
+    height: 30px;
+  }
+
+  @media (min-width: $desktop-min-width) {
+    width: 100px;
+  }
+}
+
+.filter-selected {
+  opacity: $opacity-active;
+}
+
+.clear-button {
+  @media (min-width: $tablet-min-width) {
+    width: 180px;
+  }
+}

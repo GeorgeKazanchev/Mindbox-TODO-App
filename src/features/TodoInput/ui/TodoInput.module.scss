@@ -1,3 +1,4 @@
+@import '/src/shared/ui/mixins.scss';
 @import '/src/shared/ui/variables.scss';
 
 $submit-button-height: 40px;
@@ -5,7 +6,6 @@ $submit-button-height: 40px;
 .form {
   position: relative;
   display: flex;
-  width: 90%;
   margin: 0 auto;
   margin-bottom: 20px;
 
@@ -54,21 +54,6 @@ $submit-button-height: 40px;
   right: 15px;
   display: block;
   height: $submit-button-height;
-  margin: 0;
-  padding: 0 10px;
-  font: $font-paragraph;
-  text-transform: uppercase;
-  opacity: $opacity-inactive;
-  color: $primary-white;
-  background-color: $accent-color-secondary;
-  border: none;
-  border-radius: 0.5 * $border-radius;
-  cursor: pointer;
-}
 
-.submit-button:hover,
-.submit-button:focus-visible {
-  opacity: $opacity-active;
-  box-shadow: 0 0 0 1px $primary-white;
-  outline: none;
+  @include button;
 }

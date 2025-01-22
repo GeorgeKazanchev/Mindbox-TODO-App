@@ -1,3 +1,23 @@
+@mixin button {
+  margin: 0;
+  padding: 0 10px;
+  font: $font-paragraph;
+  text-transform: uppercase;
+  opacity: $opacity-inactive-button;
+  color: $primary-white;
+  background-color: $accent-color-secondary;
+  border: none;
+  border-radius: 0.5 * $border-radius;
+  cursor: pointer;
+
+  &:hover,
+  &:focus-visible {
+    opacity: $opacity-active;
+    box-shadow: 0 0 0 1px $primary-white;
+    outline: none;
+  }
+}
+
 @mixin visually-hidden {
   position: absolute;
   width: 1px;
