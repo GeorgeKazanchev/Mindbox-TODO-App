@@ -1,18 +1,18 @@
 @import '/src/shared/ui/variables.scss';
 
-html,
-body {
+.page,
+.page-body {
   height: 100%;
 }
 
-body {
+.page-body {
   padding: 0 5%;
-  color: #ffffff;
-  background-color: #121212;
+  color: $primary-white;
+  background-color: $primary-gray;
 }
 
 /* Устранение выпадения верхнего отступа */
-body::before {
+.page-body::before {
   content: '';
   display: block;
   overflow: hidden;

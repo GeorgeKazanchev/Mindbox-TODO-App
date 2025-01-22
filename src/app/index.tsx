@@ -8,7 +8,10 @@ import { store } from './model/store';
 import { setTasks } from '../shared/model/todos-slice';
 
 import 'normalize.css';
-import './index.css';
+import * as styles from './index.module.scss';
+
+document.documentElement.classList.add(styles.page);
+document.body.classList.add(styles.pageBody);
 
 const root = document.querySelector('#root');
 if (!root) {
