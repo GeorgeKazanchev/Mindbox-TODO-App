@@ -10,7 +10,7 @@ export default defineConfig({
       localsConvention: 'camelCaseOnly',
     },
   },
-  base: process.env.NODE_ENV === 'production' ? '/Mindbox-TODO/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/Mindbox-TODO-App/' : '/',
   build: {
     outDir: 'dist',
     rollupOptions: {
