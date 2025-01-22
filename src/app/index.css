@@ -7,8 +7,8 @@ body {
 
 body {
   padding: 0 5%;
-  color: $primary-white;
-  background-color: $primary-gray;
+  color: #ffffff;
+  background-color: #121212;
 }
 
 /* Устранение выпадения верхнего отступа */
