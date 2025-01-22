@@ -12,11 +12,16 @@ export default function TodoInput(): React.ReactNode {
   const inputId = 'new-task-description';
 
   const addNewTask = () => {
+    if (taskDescription.length === 0) {
+      return;
+    }
+
     const task = {
       id: generateUniqueKey(),
       description: taskDescription,
       isCompleted: false,
     };
+
     dispatch(addTask(task));
     setTaskDescription('');
   };
