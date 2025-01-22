@@ -1,0 +1,74 @@
+@import '/src/shared/ui/variables.scss';
+
+$submit-button-height: 40px;
+
+.form {
+  position: relative;
+  display: flex;
+  width: 90%;
+  margin: 0 auto;
+  margin-bottom: 20px;
+
+  @media (min-width: $tablet-min-width) {
+    margin-bottom: 40px;
+  }
+}
+
+.label {
+  width: 100%;
+}
+
+.input {
+  width: 100%;
+  height: 60px;
+  padding: 0 $gap-left;
+  padding-left: 0.5 * $gap-left;
+  padding-right: 80px;
+  box-sizing: border-box;
+  font: $font-paragraph;
+  font-size: 18px;
+  opacity: $opacity-inactive;
+  color: $primary-white;
+  background-color: $secondary-gray;
+  border: none;
+  border-radius: $border-radius;
+  outline: none;
+
+  @media (min-width: $tablet-min-width) {
+    height: 70px;
+    padding-left: $gap-left;
+  }
+}
+
+.input:focus {
+  opacity: $opacity-active;
+}
+
+.input::placeholder {
+  font-style: italic;
+}
+
+.submit-button {
+  position: absolute;
+  top: calc(50% - $submit-button-height / 2);
+  right: 15px;
+  display: block;
+  height: $submit-button-height;
+  margin: 0;
+  padding: 0 10px;
+  font: $font-paragraph;
+  text-transform: uppercase;
+  opacity: $opacity-inactive;
+  color: $primary-white;
+  background-color: $accent-color-secondary;
+  border: none;
+  border-radius: 0.5 * $border-radius;
+  cursor: pointer;
+}
+
+.submit-button:hover,
+.submit-button:focus-visible {
+  opacity: $opacity-active;
+  box-shadow: 0 0 0 1px $primary-white;
+  outline: none;
+}
