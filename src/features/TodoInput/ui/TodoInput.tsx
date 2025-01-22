@@ -1,5 +1,6 @@
 import React from 'react';
 import * as styles from './TodoInput.module.scss';
+import generateUniqueKey from '../../../shared/model/generate-unique-key';
 import { useAppDispatch } from '../../../shared/model/redux-hooks';
 import { addTask } from '../../../shared/model/todos-slice';
 
@@ -12,7 +13,7 @@ export default function TodoInput(): React.ReactNode {
 
   const addNewTask = () => {
     const task = {
-      id: '123',
+      id: generateUniqueKey(),
       description: taskDescription,
       isCompleted: false,
     };
