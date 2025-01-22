@@ -13,9 +13,9 @@ export default function TodoItem({ task }: Props): React.ReactNode {
 
   const dispatch = useAppDispatch();
 
-  const isCompletedId = `todo-${id}-completed`;
+  const checkboxId = `todo-${id}-completed`;
 
-  const handleKeyDown = (evt: React.KeyboardEvent<HTMLLabelElement>) => {
+  const handleKeyDown = (evt: React.KeyboardEvent<HTMLElement>) => {
     if (evt.key === 'Enter' || evt.code === 'Space') {
       dispatch(changeTaskCompletion(task));
     }
@@ -24,17 +24,14 @@ export default function TodoItem({ task }: Props): React.ReactNode {
   return (
     <li
       className={`${styles.todoItem} ${isCompleted ? styles.todoItemCompleted : ''}`}
+      tabIndex={0}
+      onKeyDown={handleKeyDown}
     >
-      <label
-        className={styles.description}
-        htmlFor={isCompletedId}
-        tabIndex={0}
-        onKeyDown={handleKeyDown}
-      >
+      <label htmlFor={checkboxId} className={styles.description}>
         {description}
       </label>
       <input
-        id={isCompletedId}
+        id={checkboxId}
         className={styles.input}
         type="checkbox"
         checked={isCompleted}

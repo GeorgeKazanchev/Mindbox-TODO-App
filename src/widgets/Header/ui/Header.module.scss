@@ -6,7 +6,7 @@
   align-items: center;
   width: fit-content;
   margin: 20px auto;
-  color: rgba(#000000, 0.75);
+  color: $primary-white;
 
   @media (min-width: $tablet-min-width) {
     margin: 30px auto;
@@ -15,8 +15,9 @@
 
 .pre-title {
   font: $font-paragraph;
-  font-size: 12px;
+  font-size: 14px;
   font-style: italic;
+  color: rgba($primary-white, 0.75);
 
   @media (min-width: $tablet-min-width) {
     font-size: 16px;
@@ -26,10 +27,7 @@
 .title {
   margin: 0;
   font: $font-header;
-
-  @media (min-width: $tablet-min-width) {
-    font-size: 40px;
-  }
+  font-size: 40px;
 
   @media (min-width: $desktop-min-width) {
     font-size: 48px;

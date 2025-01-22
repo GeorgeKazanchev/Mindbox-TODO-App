@@ -8,6 +8,7 @@ import { store } from './model/store';
 import { setTasks } from '../shared/model/todos-slice';
 
 import 'normalize.css';
+import './index.module.scss';
 
 const root = document.querySelector('#root');
 if (!root) {
