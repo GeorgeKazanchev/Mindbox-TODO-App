@@ -38,14 +38,14 @@ $submit-button-height: 40px;
     height: 70px;
     padding-left: $gap-left;
   }
-}
 
-.input:focus {
-  opacity: $opacity-active;
-}
+  &:focus {
+    opacity: $opacity-active;
+  }
 
-.input::placeholder {
-  font-style: italic;
+  &::placeholder {
+    font-style: italic;
+  }
 }
 
 .submit-button {

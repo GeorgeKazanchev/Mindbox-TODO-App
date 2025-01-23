@@ -15,7 +15,7 @@ document.body.classList.add(styles.pageBody);
 
 const root = document.querySelector('#root');
 if (!root) {
-  throw new Error('Root not found'); //  TODO: Add error page and render it here
+  throw new Error('Root not found');
 }
 
 store.dispatch(setTasks(tasks));

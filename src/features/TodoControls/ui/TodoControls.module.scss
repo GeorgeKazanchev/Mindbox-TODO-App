@@ -67,6 +67,8 @@
 
   @include button;
 
+  opacity: $opacity-inactive-filter;
+
   @media (min-width: $tablet-min-width) {
     height: 30px;
   }

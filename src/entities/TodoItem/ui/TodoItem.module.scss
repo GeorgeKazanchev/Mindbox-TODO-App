@@ -1,7 +1,5 @@
 @import '/src/shared/ui/variables.scss';
 
-$tick-img-src: './assets/tick.svg';
-
 .todo-item {
   display: flex;
   flex-direction: column;
@@ -76,7 +74,7 @@ $tick-img-src: './assets/tick.svg';
   }
 
   .description::before {
-    background: url($tick-img-src) no-repeat center;
+    background: url('./assets/tick.svg') no-repeat center;
   }
 }
 

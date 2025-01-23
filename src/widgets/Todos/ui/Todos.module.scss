@@ -1,0 +1,5 @@
+@import '/src/shared/ui/mixins.scss';
+
+.visually-hidden {
+  @include visually-hidden;
+}
