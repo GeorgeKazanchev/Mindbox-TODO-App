@@ -1,5 +1,9 @@
 @import '/src/shared/ui/mixins.scss';
 
+.section {
+  padding-bottom: 10px;
+}
+
 .visually-hidden {
   @include visually-hidden;
 }

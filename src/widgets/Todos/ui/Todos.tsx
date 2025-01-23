@@ -6,7 +6,7 @@ import * as styles from './Todos.module.scss';
 
 export default function Todos(): React.ReactNode {
   return (
-    <section>
+    <section className={styles.section}>
       <h2 className={styles.visuallyHidden}>TODO widget</h2>
       <TodoInput />
       <TodoList />

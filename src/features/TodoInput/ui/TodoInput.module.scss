@@ -56,4 +56,6 @@ $submit-button-height: 40px;
   height: $submit-button-height;
 
   @include button;
+
+  opacity: $opacity-active;
 }
