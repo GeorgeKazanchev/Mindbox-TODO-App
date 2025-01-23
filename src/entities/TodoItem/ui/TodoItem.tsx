@@ -1,7 +1,7 @@
 import React from 'react';
 import * as styles from './TodoItem.module.scss';
 import { useAppDispatch } from '../../../shared/model/redux-hooks';
-import { changeTaskCompletion } from '../../../shared/model/todos-slice';
+import { changeTaskStatus } from '../../../shared/model/todos-slice';
 import type Task from '../../../shared/lib/task';
 
 type Props = {
@@ -17,7 +17,7 @@ export default function TodoItem({ task }: Props): React.ReactNode {
 
   const handleKeyDown = (evt: React.KeyboardEvent<HTMLElement>) => {
     if (evt.key === 'Enter' || evt.code === 'Space') {
-      dispatch(changeTaskCompletion(task));
+      dispatch(changeTaskStatus(task));
     }
   };
 
@@ -35,7 +35,7 @@ export default function TodoItem({ task }: Props): React.ReactNode {
         className={styles.input}
         type="checkbox"
         checked={isCompleted}
-        onChange={() => dispatch(changeTaskCompletion(task))}
+        onChange={() => dispatch(changeTaskStatus(task))}
       />
     </li>
   );

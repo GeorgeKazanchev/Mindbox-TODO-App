@@ -2,16 +2,16 @@ import { createSlice } from '@reduxjs/toolkit';
 import type { PayloadAction } from '@reduxjs/toolkit';
 import type { RootState } from '../../app/model/store';
 import type Task from '../lib/task';
-import TasksStatus from '../lib/tasks-status';
+import TasksFilter from '../lib/tasks-filter';
 
 export type TodosState = {
   tasks: Task[];
-  shownTasksStatus: TasksStatus;
+  filter: TasksFilter;
 };
 
 const initialState: TodosState = {
   tasks: [],
-  shownTasksStatus: TasksStatus.All,
+  filter: TasksFilter.All,
 };
 
 export const todosSlice = createSlice({
@@ -21,20 +21,25 @@ export const todosSlice = createSlice({
     setTasks: (state, action: PayloadAction<Task[]>) => {
       state.tasks = action.payload;
     },
-    addTask: (state, action: PayloadAction<Task>) => {
-      state.tasks.push(action.payload);
+    addTask: (state, action: PayloadAction<string>) => {
+      state.tasks.push({
+        id:
+          state.tasks.reduce((maxId, task) => Math.max(task.id, maxId), -1) + 1,
+        description: action.payload,
+        isCompleted: false,
+      });
     },
     deleteCompleted: (state) => {
       state.tasks = state.tasks.filter((task) => !task.isCompleted);
     },
-    changeTaskCompletion: (state, action: PayloadAction<Task>) => {
+    changeTaskStatus: (state, action: PayloadAction<Task>) => {
       const task = state.tasks.find((item) => item.id === action.payload.id);
       if (task) {
         task.isCompleted = !task.isCompleted;
       }
     },
-    setShownTasksStatus: (state, action: PayloadAction<TasksStatus>) => {
-      state.shownTasksStatus = action.payload;
+    setFilter: (state, action: PayloadAction<TasksFilter>) => {
+      state.filter = action.payload;
     },
   },
 });
@@ -46,18 +51,17 @@ const getCompletedTasks = (state: RootState) =>
   state.todos.tasks.filter((task) => task.isCompleted);
 
 export const selectTasks = (state: RootState) => state.todos.tasks;
+export const selectFilter = (state: RootState) => state.todos.filter;
 export const selectActiveTasksCount = (state: RootState) =>
   getActiveTasks(state).length;
-export const selectShownTasksStatus = (state: RootState) =>
-  state.todos.shownTasksStatus;
 
 export const selectShownTasks = (state: RootState) => {
-  switch (state.todos.shownTasksStatus) {
-    case TasksStatus.All:
+  switch (state.todos.filter) {
+    case TasksFilter.All:
       return state.todos.tasks;
-    case TasksStatus.Active:
+    case TasksFilter.Active:
       return getActiveTasks(state);
-    case TasksStatus.Completed:
+    case TasksFilter.Completed:
       return getCompletedTasks(state);
     default:
       throw new Error(
@@ -70,8 +74,8 @@ export const {
   setTasks,
   addTask,
   deleteCompleted,
-  changeTaskCompletion,
-  setShownTasksStatus,
+  changeTaskStatus,
+  setFilter,
 } = todosSlice.actions;
 
 export default todosSlice.reducer;

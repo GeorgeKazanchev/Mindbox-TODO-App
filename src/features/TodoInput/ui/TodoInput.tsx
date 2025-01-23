@@ -1,34 +1,29 @@
 import React from 'react';
 import * as styles from './TodoInput.module.scss';
-import generateUniqueKey from '../../../shared/model/generate-unique-key';
 import { useAppDispatch } from '../../../shared/model/redux-hooks';
 import { addTask } from '../../../shared/model/todos-slice';
+import { inputId } from '../config/consts';
 
 export default function TodoInput(): React.ReactNode {
   const [taskDescription, setTaskDescription] = React.useState('');
-
   const dispatch = useAppDispatch();
-
-  const inputId = 'new-task-description';
 
   const addNewTask = () => {
     if (taskDescription.length === 0) {
       return;
     }
 
-    const task = {
-      id: generateUniqueKey(),
-      description: taskDescription,
-      isCompleted: false,
-    };
-
-    dispatch(addTask(task));
+    dispatch(addTask(taskDescription));
     setTaskDescription('');
   };
 
   const handleFormSubmit = (evt: React.FormEvent<HTMLFormElement>) => {
     evt.preventDefault();
     addNewTask();
+  };
+
+  const handleTextInput = (evt: React.ChangeEvent<HTMLInputElement>) => {
+    setTaskDescription(evt.currentTarget.value);
   };
 
   const handleSubmitButtonClick = (
@@ -39,7 +34,12 @@ export default function TodoInput(): React.ReactNode {
   };
 
   return (
-    <form className={styles.form} onSubmit={handleFormSubmit}>
+    <form
+      className={styles.form}
+      action="#"
+      method="post"
+      onSubmit={handleFormSubmit}
+    >
       <label
         htmlFor={inputId}
         className={styles.label}
@@ -52,11 +52,10 @@ export default function TodoInput(): React.ReactNode {
           value={taskDescription}
           name="description"
           placeholder="What needs to be done?"
-          onInput={(evt: React.ChangeEvent<HTMLInputElement>) => {
-            setTaskDescription(evt.currentTarget.value);
-          }}
+          onInput={handleTextInput}
         />
       </label>
+
       <button
         style={{ display: taskDescription.length === 0 ? 'none' : 'block' }}
         className={styles.submitButton}

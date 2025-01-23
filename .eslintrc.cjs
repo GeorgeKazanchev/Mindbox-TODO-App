@@ -16,6 +16,8 @@ module.exports = {
   ignorePatterns: [
     'dist',
     'vite.config.ts',
+    'babel.config.js',
+    'tests',
   ],
   rules: {
     //  Следующее правило нужно, чтобы присваивание значения state-у

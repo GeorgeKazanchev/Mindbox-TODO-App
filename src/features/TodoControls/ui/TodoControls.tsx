@@ -1,5 +1,7 @@
 import React from 'react';
 import * as styles from './TodoControls.module.scss';
+import FilterId from '../lib/filter-id';
+import TasksFilter from '../../../shared/lib/tasks-filter';
 
 import {
   useAppDispatch,
@@ -9,34 +11,26 @@ import {
 import {
   deleteCompleted,
   selectActiveTasksCount,
-  selectShownTasksStatus,
-  setShownTasksStatus,
+  selectFilter,
+  setFilter,
 } from '../../../shared/model/todos-slice';
-
-import {
-  FILTER_ACTIVE_ID,
-  FILTER_ALL_ID,
-  FILTER_COMPLETED_ID,
-} from '../config/consts';
-
-import TasksStatus from '../../../shared/lib/tasks-status';
 
 export default function TodoControls(): React.ReactNode {
   const activeTasksCount = useAppSelector(selectActiveTasksCount);
-  const shownTasksStatus = useAppSelector(selectShownTasksStatus);
+  const filter = useAppSelector(selectFilter);
 
   const dispatch = useAppDispatch();
 
-  const isAllShown = shownTasksStatus === TasksStatus.All;
-  const isActiveShown = shownTasksStatus === TasksStatus.Active;
-  const isCompletedShown = shownTasksStatus === TasksStatus.Completed;
+  const areAllShown = filter === TasksFilter.All;
+  const areActiveShown = filter === TasksFilter.Active;
+  const areCompletedShown = filter === TasksFilter.Completed;
 
   const handleKeyDown = (
     evt: React.KeyboardEvent<HTMLElement>,
-    taskStatus: TasksStatus,
+    tasksFilter: TasksFilter,
   ) => {
     if (evt.key === 'Enter' || evt.code === 'Space') {
-      dispatch(setShownTasksStatus(taskStatus));
+      dispatch(setFilter(tasksFilter));
     }
   };
 
@@ -49,64 +43,62 @@ export default function TodoControls(): React.ReactNode {
 
       <div className={styles.filters}>
         <label
-          htmlFor={FILTER_ALL_ID}
-          className={`${styles.filter} ${isAllShown ? styles.filterSelected : ''}`}
+          htmlFor={FilterId.All}
+          className={`${styles.filter} ${areAllShown ? styles.filterSelected : ''}`}
           tabIndex={0}
           onKeyDown={(evt: React.KeyboardEvent<HTMLElement>) =>
-            handleKeyDown(evt, TasksStatus.All)
+            handleKeyDown(evt, TasksFilter.All)
           }
         >
           All
           <input
-            id={FILTER_ALL_ID}
+            id={FilterId.All}
             className={styles.input}
             type="radio"
             name="tasks-filtration"
             value="all"
-            checked={isAllShown}
-            onChange={() => dispatch(setShownTasksStatus(TasksStatus.All))}
+            checked={areAllShown}
+            onChange={() => dispatch(setFilter(TasksFilter.All))}
           />
         </label>
 
         <label
-          htmlFor={FILTER_ACTIVE_ID}
-          className={`${styles.filter} ${isActiveShown ? styles.filterSelected : ''}`}
+          htmlFor={FilterId.Active}
+          className={`${styles.filter} ${areActiveShown ? styles.filterSelected : ''}`}
           tabIndex={0}
           onKeyDown={(evt: React.KeyboardEvent<HTMLElement>) =>
-            handleKeyDown(evt, TasksStatus.Active)
+            handleKeyDown(evt, TasksFilter.Active)
           }
         >
           Active
           <input
-            id={FILTER_ACTIVE_ID}
+            id={FilterId.Active}
             className={styles.input}
             type="radio"
             name="tasks-filtration"
             value="active"
-            checked={isActiveShown}
-            onChange={() => dispatch(setShownTasksStatus(TasksStatus.Active))}
+            checked={areActiveShown}
+            onChange={() => dispatch(setFilter(TasksFilter.Active))}
           />
         </label>
 
         <label
-          htmlFor={FILTER_COMPLETED_ID}
-          className={`${styles.filter} ${isCompletedShown ? styles.filterSelected : ''}`}
+          htmlFor={FilterId.Completed}
+          className={`${styles.filter} ${areCompletedShown ? styles.filterSelected : ''}`}
           tabIndex={0}
           onKeyDown={(evt: React.KeyboardEvent<HTMLElement>) =>
-            handleKeyDown(evt, TasksStatus.Completed)
+            handleKeyDown(evt, TasksFilter.Completed)
           }
         >
           Completed
           <input
-            id={FILTER_COMPLETED_ID}
+            id={FilterId.Completed}
             className={styles.input}
             type="radio"
             name="tasks-filtration"
             value="completed"
-            checked={isCompletedShown}
-            onChange={() =>
-              dispatch(setShownTasksStatus(TasksStatus.Completed))
-            }
+            checked={areCompletedShown}
+            onChange={() => dispatch(setFilter(TasksFilter.Completed))}
           />
         </label>
       </div>
