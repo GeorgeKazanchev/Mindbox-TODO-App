@@ -1,5 +1,18 @@
 @import '/src/shared/ui/variables.scss';
 
+.message {
+  width: fit-content;
+  margin: 0 auto;
+  margin-top: 40px;
+  font: $font-paragraph;
+  font-size: 32px;
+  color: rgba($accent-color, 0.8);
+
+  @media (min-width: $tablet-min-width) {
+    margin-top: 80px;
+  }
+}
+
 .list {
   display: grid;
   gap: 1px;

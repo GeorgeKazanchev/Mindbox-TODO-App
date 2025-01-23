@@ -7,6 +7,12 @@ import { selectShownTasks } from '../../../shared/model/todos-slice';
 export default function TodoList(): React.ReactNode {
   const tasks = useAppSelector(selectShownTasks);
 
+  if (tasks.length === 0) {
+    return (
+      <div className={styles.message}>There are no tasks</div>
+    );
+  }
+
   return (
     <ul className={styles.list}>
       {tasks.map((task) => (
