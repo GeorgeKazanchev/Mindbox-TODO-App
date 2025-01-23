@@ -8,9 +8,7 @@ export default function TodoList(): React.ReactNode {
   const tasks = useAppSelector(selectShownTasks);
 
   if (tasks.length === 0) {
-    return (
-      <div className={styles.message}>There are no tasks</div>
-    );
+    return <div className={styles.message}>There are no tasks</div>;
   }
 
   return (
