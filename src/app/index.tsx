@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 
 import App from './ui/App';
-import tasks from '../shared/mocks/tasks';
+import getInitialTasks from './model/get-initial-tasks';
 import { store } from './model/store';
 import { setTasks } from '../shared/model/todos-slice';
 
@@ -18,6 +18,7 @@ if (!root) {
   throw new Error('Root not found');
 }
 
+const tasks = getInitialTasks();
 store.dispatch(setTasks(tasks));
 
 const appContainer = createRoot(root);
